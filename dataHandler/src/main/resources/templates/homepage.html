@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Case Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        h1 {
+            padding-bottom: 3em;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1 class="h1">
+        Coronavirus Tracker
+    </h1>
+    <table class="table">
+        <tr>
+            <th>Country</th>
+            <th>Cases</th>
+            <th>Deaths</th>
+            <th>Recoveries</th>
+            <th>Tests</th>
+        </tr>
+        <tr th:each="stat : ${stats}">
+            <td th:text="${stat.placeName}"></td>
+            <td th:text="${stat.allCases}"></td>
+            <td th:text="${stat.allDeaths}"></td>
+            <td th:text="${stat.allRecoveries}"></td>
+            <td th:text="${stat.tests}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
+
+stat.setNewCases(curr.optInt("newCases"));
+stat.setNewCriticals(curr.optInt("newCriticals"));
+stat.setNewDeaths(curr.optInt("newDeaths"));
+stat.setNewRecoveries(curr.optInt("newRecoveries"));
+stat.setPopulation(curr.optInt("population"));

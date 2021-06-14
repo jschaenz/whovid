@@ -16,12 +16,14 @@ public class statisticsCreationService {
     dataGetterService dataGetter;
 
     public Document getDeutschland() throws JSONException, IOException, InterruptedException {
-        JSONArray allData = new JSONArray(dataGetter.getData().optString("data"));
+        JSONObject allData = dataGetter.getData();
+        JSONArray data = new JSONArray(allData.optString("data"));
 
         Document doc =  new Document();
-        allData.forEach(x -> {
+        data.forEach(x -> {
             JSONObject curr = (JSONObject) x;
             if (curr.optString("placeName").contains("Germany")) {
+
                 doc.append("allCases",curr.optInt("allCases"))
                     .append("allCriticals",curr.optInt("allCriticals"))
                     .append("allDeaths", curr.optInt("allDeaths"))
@@ -32,7 +34,8 @@ public class statisticsCreationService {
                     .append("newRecoveries",curr.optInt("newRecoveries"))
                     .append("placeName",curr.optString("placeName"))
                     .append("population",curr.optInt("population"))
-                    .append("tests",curr.optInt("tests"));
+                    .append("tests",curr.optInt("tests"))
+                    .append("timestamp",curr.optString("date"));
             }
         });
         return doc;

@@ -9,18 +9,17 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>vs-gruppe-E</groupId>
-	<artifactId>dataFetcher</artifactId>
+	<artifactId>dataWriter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dataFetcher</name>
-	<description>retreives data from the DB</description>
+	<name>dataWriter</name>
+	<description>writes data to the DB</description>
 	<properties>
-		<java.version>14</java.version>
-		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>
@@ -39,18 +38,39 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+		<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180130</version>
+		</dependency>
+		<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-mongodb</artifactId>
+    <version>3.0.3.RELEASE</version>
+	</dependency>
+	
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-mongodb</artifactId>
+        <version>3.2.1</version>
+    </dependency>
+
+	    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>4.2.3</version>
+    </dependency>
+
+  <repository>
+    <id>spring-milestone</id>
+    <name>Spring Maven MILESTONE Repository</name>
+    <url>https://repo.spring.io/libs-milestone</url>
+  </repository>
+ </dependencies>
+
+
+<spring.framework.version>5.3.7</spring.framework.version>
+
 
 	<build>
 		<plugins>

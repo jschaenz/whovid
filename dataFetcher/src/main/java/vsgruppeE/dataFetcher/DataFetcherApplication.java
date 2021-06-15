@@ -1,5 +1,6 @@
 package vsgruppeE.dataFetcher;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,11 +13,7 @@ import vsgruppeE.dataFetcher.service.DataBaseReaderService;
 public class DataFetcherApplication {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(DataFetcherApplication.class, args);
-		DataBaseReaderService dbreaderservice = new DataBaseReaderService();
-		System.out.println(dbreaderservice.getAllData());
-		System.out.println(dbreaderservice.getData());
-		
+		SpringApplication.run(DataFetcherApplication.class, args);	
 		
 	}
 

@@ -22,7 +22,7 @@ public class DataBaseWriterService {
     public void writeData() throws Exception {
         try {
             MongoDatabase db = config.getDB();
-            MongoCollection coll = db.getCollection("coronaData");
+            MongoCollection<Document> coll = db.getCollection("coronaData");
 
             Document newData = statistics.getDeutschland();
 

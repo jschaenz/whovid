@@ -19,8 +19,8 @@ public class DataBaseReaderService {
 
         try {
             MongoDatabase db = config.getDB();
-            MongoCollection coll = db.getCollection("coronaData");
-            return (Document)coll.find().first();
+            MongoCollection<Document> coll = db.getCollection("coronaData");
+            return coll.find().first();
             
         } catch (MongoSocketOpenException E) {
             System.out.println("Socket couldnt be opened");
@@ -31,9 +31,8 @@ public class DataBaseReaderService {
     public List<Document> getAllData() throws Exception {
         try {
             MongoDatabase db = config.getDB();
-            MongoCollection coll = db.getCollection("coronaData");
-            List<Document> data = (List<Document>) coll.find().into(new ArrayList<Document>());
-            return data;
+            MongoCollection<Document> coll = db.getCollection("coronaData");
+            return coll.find().into(new ArrayList<Document>());
         } catch (MongoSocketOpenException E) {
             System.out.println("Socket couldnt be opened");
             return null;

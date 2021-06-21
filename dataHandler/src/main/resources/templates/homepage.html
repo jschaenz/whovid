@@ -35,21 +35,37 @@
             <td th:text="${stat.tests}"></td>
         </tr>
     </table>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div style="height: 300px; width: 50%">
+    <canvas id="myChart" width="400%" height="400%"></canvas>
+    </div>
+
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
     <script>
+    function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+    const obj = JSON.parse(httpGet("http://localhost:8082/data/chart"))
 
     var myChartObject = document.getElementById('myChart');
-    
+    myChartObject.height = 500;
     var chart = new Chart(myChartObject, {
     type: 'line',
     data: {
-    labels: ["Montag", "Dienstag", "Mitwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+    labels: obj["labels"],
     datasets:[{
     label: "Datensatz",
     borderColor: 'rgba(239, 52, 52, 1)',
-    data: [1,2,3,4,4,6,7],
+    data: obj["values"],
+    responsive: true,
+    maintainAspectRatio: false
+    
     }]
     }
     

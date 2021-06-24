@@ -9,11 +9,10 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         h1 {
-            padding-bottom: 3em;
+            padding-bottom: 1em;
         }
     </style>
 </head>
-
 
 <body>
     <h1 class="h1">
@@ -21,24 +20,26 @@
     </h1>
     <table class="table">
         <tr>
-            <th>Country</th>
-            <th>Cases</th>
-            <th>Deaths</th>
+            <th>Fälle Gesamt</th>
+            <th>Todesfälle Gesamt</th>
             <th>Recoveries</th>
             <th>Tests</th>
         </tr>
         <tr th:each="stat : ${stats}">
-            <td th:text="${stat.placeName}"></td>
             <td th:text="${stat.allCases}"></td>
             <td th:text="${stat.allDeaths}"></td>
             <td th:text="${stat.allRecoveries}"></td>
             <td th:text="${stat.tests}"></td>
         </tr>
     </table>
-    <div style="height: 300px; width: 50%">
-    <canvas id="myChart" width="400%" height="400%"></canvas>
+    <div style="height: 100%; width: 100%">
+        <div id="dialerdiv1" style="float: left; width: 60em">
+            <canvas id="myChart" width="100%" height="100%"></canvas>
+        </div>
+        <div id="dialerdiv2" style="float: left; width: 60em">
+            <canvas id="myChart2" width="100%" height="100%"></canvas>
+        </div>
     </div>
-
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -54,24 +55,45 @@
     const obj = JSON.parse(httpGet("http://localhost:8082/data/chart"))
 
     var myChartObject = document.getElementById('myChart');
-    myChartObject.height = 500;
+    var myChartObject2 = document.getElementById('myChart2');
+    myChartObject.height = 100;
+    myChartObject2.height = 100;
+
     var chart = new Chart(myChartObject, {
     type: 'line',
     data: {
     labels: obj["labels"],
-    datasets:[{
-    label: "Datensatz",
+    datasets:[
+        {
+    label: "Gesamte Fälle",
     borderColor: 'rgba(239, 52, 52, 1)',
-    data: obj["values"],
+    data: obj["allCases"],
     responsive: true,
     maintainAspectRatio: false
-    
-    }]
+    },
+    {
+    label: "Erholungen",
+    borderColor: 'rgba(0, 230, 64, 1)',
+    data: obj["allRecoveries"],
+    responsive: true,
+    maintainAspectRatio: false
     }
+]
+    }});
     
-    });
-    
-    
+    var chart2 = new Chart(myChartObject2, {
+    type: 'line',
+    data: {
+    labels: obj["labels"],
+    datasets:[
+        {
+    label: "Tests",
+    borderColor: 'rgba(0, 181, 204, 1)',
+    data: obj["Tests"],
+    responsive: true,
+    maintainAspectRatio: false
+        }]
+    }});
     </script>
 </body>
 

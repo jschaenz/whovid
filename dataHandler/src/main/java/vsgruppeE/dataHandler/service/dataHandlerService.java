@@ -33,14 +33,20 @@ public class dataHandlerService {
 
     public chartModel chartData(){
         JSONArray data = allData();
-        ArrayList<Integer> values = new ArrayList();
+        ArrayList<Integer> allCases = new ArrayList();
+        ArrayList<Integer> allDeaths = new ArrayList();
+        ArrayList<Integer> allRecoveries = new ArrayList();  
+        ArrayList<Integer> Tests = new ArrayList();  
         ArrayList<String> labels = new ArrayList();
         for(Object ob: data){
-                values.add(((statisticsModel)ob).getNewCases());
+                allCases.add(((statisticsModel)ob).getAllCases());
+                allDeaths.add(((statisticsModel)ob).getAllDeaths());
+                allRecoveries.add(((statisticsModel)ob).getAllRecoveries());
+                Tests.add(((statisticsModel)ob).getTests());
                 labels.add(((statisticsModel)ob).getTimestamp().split("T")[0]);
             }
  
-    
-        return new chartModel(values,labels);
+
+        return new chartModel(allCases,labels,allDeaths,allRecoveries,Tests);
     }
 }

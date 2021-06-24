@@ -9,14 +9,14 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         h1 {
-            padding-bottom: 1em;
+            padding-bottom: .5em;
         }
     </style>
 </head>
 
 <body>
     <h1 class="h1">
-        Coronavirus Tracker
+        Coronavirus Statistiken in Deutschland
     </h1>
     <table class="table">
         <tr>
@@ -56,8 +56,8 @@
 
     var myChartObject = document.getElementById('myChart');
     var myChartObject2 = document.getElementById('myChart2');
-    myChartObject.height = 100;
-    myChartObject2.height = 100;
+    myChartObject.height = 75;
+    myChartObject2.height = 75;
 
     var chart = new Chart(myChartObject, {
     type: 'line',
